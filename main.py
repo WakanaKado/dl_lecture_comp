@@ -80,6 +80,7 @@ class VQADataset(torch.utils.data.Dataset):
             question = process_text(question)
             words = question.split(" ")
             for word in words:
+                word = process_text(word) #【追加】質問文における前処理 
                 if word not in self.question2idx:
                     self.question2idx[word] = len(self.question2idx)
         self.idx2question = {v: k for k, v in self.question2idx.items()}  # 逆変換用の辞書(question)
